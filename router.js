@@ -13,6 +13,6 @@ const router = new Router();
 router.post("/", create);
 router.get("/:profileId", findOne);
 router.post('/image/:profileId', multerUpload('avatar'), uploadImage);
-router.get("/image/:profileId", multerUpload("avatar"), getProfileImage);
+router.get("/image/:profileId", getProfileImage);
 
 module.exports = router;
