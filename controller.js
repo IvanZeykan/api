@@ -67,10 +67,15 @@ const postController = {
     }
   },
 
-  async findAll(req, res, next) {
+  async findOne(req, res, next) {
     try {
-      const allProfiles = await Profile.find();
-      res.status(200).json(allProfiles);
+       const profile = await Profile.findOne({ _id: req.params.profileId });
+       if (!profile) {
+         return res.status(404).json({
+           message: `Profile with id: ${req.params.profileId} not found `,
+         });
+       }
+      res.status(200).json(profile);
     } catch (e) {
       next(e);
     }
